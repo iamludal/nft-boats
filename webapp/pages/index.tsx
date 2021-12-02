@@ -1,9 +1,13 @@
+import { useColorMode, useColorModeValue } from "@chakra-ui/color-mode";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import ColorModeSwitcher from "../components/ui/ColorModeSwitcher";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+  const background = useColorModeValue("#ecf2f7", "#2c303d");
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,13 +17,17 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <ColorModeSwitcher />
+
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p className={styles.description}>
           Get started by editing{" "}
-          <code className={styles.code}>pages/index.tsx</code>
+          <code className={styles.code} style={{ background }}>
+            pages/index.tsx
+          </code>
         </p>
 
         <div className={styles.grid}>
