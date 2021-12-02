@@ -1,4 +1,4 @@
-import { useColorMode, useColorModeValue } from "@chakra-ui/color-mode";
+import { useColorModeValue } from "@chakra-ui/color-mode";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
