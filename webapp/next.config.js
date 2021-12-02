@@ -1,7 +1,7 @@
-const nextTranslate = require('next-translate');
+import nextTranslate from 'next-translate';
 
 /** @type {import('next').NextConfig} */
-module.exports = nextTranslate({
+export default nextTranslate({
   reactStrictMode: true,
   poweredByHeader: false
 })
