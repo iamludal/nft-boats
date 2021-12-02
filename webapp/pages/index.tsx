@@ -4,6 +4,7 @@ import Head from 'next/head';
 import NavBar from '../components/layout/navbar';
 import styles from '../styles/Home.module.css';
 import useTranslation from 'next-translate/useTranslation';
+import ColorModeSwitcher from '../components/ui/ColorModeSwitcher';
 
 const Home: NextPage = () => {
   const background = useColorModeValue('#ecf2f7', '#2c303d');
@@ -19,6 +20,9 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <NavBar />
+        <ColorModeSwitcher />
+        <p>{t('switch_theme')}</p>
+
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">NFT Boats!</a>
         </h1>
