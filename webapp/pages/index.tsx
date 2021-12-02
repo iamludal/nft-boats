@@ -3,9 +3,11 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import NavBar from '../components/layout/navbar';
 import styles from '../styles/Home.module.css';
+import useTranslation from 'next-translate/useTranslation';
 
 const Home: NextPage = () => {
   const background = useColorModeValue('#ecf2f7', '#2c303d');
+  const { t } = useTranslation('index');
 
   return (
     <div className={styles.container}>
