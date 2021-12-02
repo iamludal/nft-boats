@@ -1,16 +1,13 @@
-import { IconButton } from '@chakra-ui/button';
-import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
+import { useColorMode } from '@chakra-ui/color-mode';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import useSound from 'use-sound';
-
-const soundId = {
-  dark: 'on',
-  light: 'off',
-};
+import { Switch } from '@chakra-ui/switch';
+import { Grid } from '@chakra-ui/layout';
+import { useState, useEffect } from 'react';
 
 const ColorModeSwitcher = () => {
   const { toggleColorMode, colorMode } = useColorMode();
-  const icon = useColorModeValue(<MoonIcon />, <SunIcon />);
+  const [isDarkMode, setIsDarkMode] = useState(colorMode === 'dark');
   const [play] = useSound('/assets/audio/switch.mp3', {
     volume: 0.1,
     sprite: {
@@ -21,10 +18,21 @@ const ColorModeSwitcher = () => {
 
   const toggle = () => {
     toggleColorMode();
-    play({ id: soundId[colorMode] });
+    play({ id: isDarkMode ? 'off' : 'on' });
+    setIsDarkMode(isDark => !isDark);
   };
 
-  return <IconButton aria-label="Changer le thème" icon={icon} onClick={toggle} />;
+  useEffect(() => {
+    setIsDarkMode(colorMode === 'dark');
+  }, [colorMode]);
+
+  return (
+    <Grid gap={4} autoFlow="column" alignItems="center">
+      <SunIcon />
+      <Switch size="lg" onChange={toggle} isChecked={isDarkMode} />
+      <MoonIcon />
+    </Grid>
+  );
 };
 
 export default ColorModeSwitcher;
