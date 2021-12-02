@@ -2,7 +2,6 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import NavBar from '../components/layout/navbar';
 import useTranslation from 'next-translate/useTranslation';
-import ColorModeSwitcher from '../components/ui/ColorModeSwitcher';
 import { Flex } from '@chakra-ui/layout';
 
 const Home: NextPage = () => {
@@ -18,7 +17,6 @@ const Home: NextPage = () => {
 
       <Flex direction="column">
         <NavBar />
-        <ColorModeSwitcher />
         <p>{t('switch_theme')}</p>
       </Flex>
     </>
