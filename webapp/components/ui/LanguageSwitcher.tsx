@@ -10,12 +10,6 @@ import useTranslation from 'next-translate/useTranslation';
 const { locales } = i18nConfig;
 
 
-const LANGUAGE = {
-  fr: 'Français',
-  en: 'English',
-};
-
-
 
 const LanguageSwitcher = () => {
     const router = useRouter();
@@ -31,13 +25,16 @@ const LanguageSwitcher = () => {
         <MdTranslate size={18} />
         </MenuButton>
         <MenuList minWidth={0}>
-        {locales.map(locale => (
-            <MenuItem key={locale} fontSize='md'>
-            <NextLink href={router.asPath} locale={locale} passHref>
-                <Link>{LANGUAGE[locale]}</Link>
-            </NextLink>
+            <MenuItem fontSize='md'>
+                <NextLink href={router.asPath} locale="fr" passHref>
+                    <Link>Français</Link>
+                </NextLink>
             </MenuItem>
-        ))}
+            <MenuItem fontSize='md'>
+                <NextLink href={router.asPath} locale="en" passHref>
+                    <Link>English</Link>
+                </NextLink>
+            </MenuItem>
         </MenuList>
     </Menu>
     );
