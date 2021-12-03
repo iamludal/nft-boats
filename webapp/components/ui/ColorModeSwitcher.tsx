@@ -1,4 +1,4 @@
-import { useColorMode } from '@chakra-ui/color-mode';
+import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import useSound from 'use-sound';
 import { Switch } from '@chakra-ui/switch';
@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 
 const ColorModeSwitcher = () => {
   const { toggleColorMode, colorMode } = useColorMode();
-  const [isDarkMode, setIsDarkMode] = useState(colorMode === 'dark');
+  const isDarkMode = useColorModeValue(false, true);
   const [play] = useSound('/assets/audio/switch.mp3', {
     volume: 0.1,
     sprite: {
@@ -19,12 +19,7 @@ const ColorModeSwitcher = () => {
   const toggle = () => {
     toggleColorMode();
     play({ id: isDarkMode ? 'off' : 'on' });
-    setIsDarkMode(isDark => !isDark);
   };
-
-  useEffect(() => {
-    setIsDarkMode(colorMode === 'dark');
-  }, [colorMode]);
 
   return (
     <Grid gap={4} autoFlow="column" alignItems="center">
