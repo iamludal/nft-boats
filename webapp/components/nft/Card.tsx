@@ -48,7 +48,7 @@ const Card: FC<Props> = ({ name, image, price, popular }) => {
       boxShadow="base"
       borderWidth={1}
       borderColor={useColorModeValue('gray.100', 'gray.600')}
-      _hover={{ boxShadow: 'outline' }}
+      _hover={{ boxShadow: 'outline', cursor: 'pointer' }}
       whileHover={{ scale: 1.02 }}
       variants={child}
       onClick={onOpen}
