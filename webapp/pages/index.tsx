@@ -1,12 +1,10 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import NavBar from '../components/layout/navbar';
-import useTranslation from 'next-translate/useTranslation';
-import { Flex } from '@chakra-ui/layout';
+import { Flex, Grid } from '@chakra-ui/layout';
+import Card from '../components/nft/Card';
 
 const Home: NextPage = () => {
-  const { t } = useTranslation('index');
-
   return (
     <>
       <Head>
@@ -17,7 +15,11 @@ const Home: NextPage = () => {
 
       <Flex direction="column">
         <NavBar />
-        <p>{t('switch_theme')}</p>
+        <Grid justifyContent="left" autoFlow="column" gap={10} p={10}>
+          <Card name="Boat #1" image="/assets/images/01.png" price={0.25} popular={true} />
+          <Card name="Boat #2" image="/assets/images/02.png" price={0.5} popular={false} />
+          <Card name="Boat #3" image="/assets/images/03.png" price={1.25} popular={false} />
+        </Grid>
       </Flex>
     </>
   );
