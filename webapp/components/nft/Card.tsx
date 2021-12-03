@@ -1,4 +1,4 @@
-import { Badge, Box, Flex, Heading } from '@chakra-ui/layout';
+import { Badge, Box, BoxProps, Flex, Heading } from '@chakra-ui/layout';
 import { Image } from '@chakra-ui/react';
 import { BsPatchCheckFill } from 'react-icons/bs';
 import { Icon } from '@chakra-ui/icon';
@@ -15,9 +15,7 @@ export type Props = {
   popular: boolean;
 };
 
-const MotionBox = motion(Box);
-
-const list = {
+const child = {
   show: {
     opacity: 1,
     y: 0,
@@ -27,6 +25,8 @@ const list = {
     y: 10,
   },
 };
+
+const MotionBox = motion<BoxProps>(Box);
 
 const Card: FC<Props> = ({ name, image, price, popular }) => {
   const { t } = useTranslation('index');
@@ -39,8 +39,8 @@ const Card: FC<Props> = ({ name, image, price, popular }) => {
       borderWidth={1}
       borderColor={useColorModeValue('gray.100', 'gray.600')}
       _hover={{ boxShadow: 'outline' }}
-      whileHover={{ y: -5 }}
-      variants={list}
+      whileHover={{ scale: 1.02 }}
+      variants={child}
     >
       <Badge
         mb={4}
