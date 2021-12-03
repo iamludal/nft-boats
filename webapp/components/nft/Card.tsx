@@ -17,6 +17,17 @@ export type Props = {
 
 const MotionBox = motion(Box);
 
+const list = {
+  show: {
+    opacity: 1,
+    y: 0,
+  },
+  hidden: {
+    opacity: 0,
+    y: 10,
+  },
+};
+
 const Card: FC<Props> = ({ name, image, price, popular }) => {
   const { t } = useTranslation('index');
 
@@ -29,6 +40,7 @@ const Card: FC<Props> = ({ name, image, price, popular }) => {
       borderColor={useColorModeValue('gray.100', 'gray.600')}
       _hover={{ boxShadow: 'outline' }}
       whileHover={{ y: -5 }}
+      variants={list}
     >
       <Badge
         mb={4}

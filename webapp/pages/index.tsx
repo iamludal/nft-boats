@@ -3,6 +3,23 @@ import Head from 'next/head';
 import NavBar from '../components/layout/navbar';
 import { Flex, Grid } from '@chakra-ui/layout';
 import Card from '../components/nft/Card';
+import { motion } from 'framer-motion';
+
+const MotionGrid = motion(Grid);
+
+const list = {
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+  hidden: {
+    opacity: 0,
+    y: 10,
+  },
+};
 
 const Home: NextPage = () => {
   return (
@@ -15,11 +32,19 @@ const Home: NextPage = () => {
 
       <Flex direction="column">
         <NavBar />
-        <Grid justifyContent="left" autoFlow="column" gap={10} p={10}>
+        <MotionGrid
+          justifyContent="left"
+          autoFlow="column"
+          gap={10}
+          p={10}
+          variants={list}
+          initial="hidden"
+          animate="show"
+        >
           <Card name="Boat #1" image="/assets/images/01.png" price={0.25} popular={true} />
           <Card name="Boat #2" image="/assets/images/02.png" price={0.5} popular={false} />
           <Card name="Boat #3" image="/assets/images/03.png" price={1.25} popular={false} />
-        </Grid>
+        </MotionGrid>
       </Flex>
     </>
   );
