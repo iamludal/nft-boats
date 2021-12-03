@@ -7,6 +7,8 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalHeader,
+  ModalFooter,
+  Button,
 } from '@chakra-ui/react';
 import { BsPatchCheckFill } from 'react-icons/bs';
 import { Icon } from '@chakra-ui/icon';
@@ -15,7 +17,7 @@ import { FaEthereum, FaFireAlt } from 'react-icons/fa';
 import { FC } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { motion } from 'framer-motion';
-import { useDisclosure } from '@chakra-ui/react';
+import { useDisclosure, useToast } from '@chakra-ui/react';
 
 export type Props = {
   name: string;
@@ -40,6 +42,12 @@ const MotionBox = motion<BoxProps>(Box);
 const Card: FC<Props> = ({ name, image, price, popular }) => {
   const { t } = useTranslation('index');
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const toast = useToast({
+    status: 'error',
+    title: t('not_available'),
+    position: 'bottom',
+    isClosable: true,
+  });
 
   return (
     <MotionBox
@@ -88,9 +96,14 @@ const Card: FC<Props> = ({ name, image, price, popular }) => {
               <Icon as={BsPatchCheckFill} color="blue.500" ml={2} />
             </Flex>
           </ModalHeader>
-          <ModalBody px={10} pb={10} pt={5}>
+          <ModalBody>
             <Image src={image} width={400} height={400} rounded="md" />
           </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="green" justifySelf="stretch" flex={1} onClick={() => toast()}>
+              {t('buy')}
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </MotionBox>
