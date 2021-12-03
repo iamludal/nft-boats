@@ -2,6 +2,8 @@ import { Grid, Heading } from '@chakra-ui/layout';
 import Image from 'next/image';
 import ColorModeSwitcher from '../ui/ColorModeSwitcher';
 import { Flex } from '@chakra-ui/layout';
+import React from 'react';
+import LanguageSwitcher from '../ui/LanguageSwitcher';
 
 const NavBar = () => {
   return (
@@ -10,7 +12,10 @@ const NavBar = () => {
         <Image src="/assets/logo.svg" width={50} height={50} />
         <Heading>NFT Boats</Heading>
       </Grid>
-      <ColorModeSwitcher />
+      <Grid autoFlow="column" alignItems="center" gap={5}>
+        <ColorModeSwitcher />
+        <LanguageSwitcher />
+      </Grid>
     </Flex>
   );
 };
