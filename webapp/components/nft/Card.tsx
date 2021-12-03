@@ -6,6 +6,7 @@ import { useColorModeValue, Text } from '@chakra-ui/react';
 import { FaEthereum, FaFireAlt } from 'react-icons/fa';
 import { FC } from 'react';
 import useTranslation from 'next-translate/useTranslation';
+import { motion } from 'framer-motion';
 
 export type Props = {
   name: string;
@@ -14,17 +15,20 @@ export type Props = {
   popular: boolean;
 };
 
+const MotionBox = motion(Box);
+
 const Card: FC<Props> = ({ name, image, price, popular }) => {
   const { t } = useTranslation('index');
 
   return (
-    <Box
+    <MotionBox
       p={5}
       rounded="md"
       boxShadow="base"
       borderWidth={1}
       borderColor={useColorModeValue('gray.100', 'gray.600')}
       _hover={{ boxShadow: 'outline' }}
+      whileHover={{ y: -5 }}
     >
       <Badge
         mb={4}
@@ -48,7 +52,7 @@ const Card: FC<Props> = ({ name, image, price, popular }) => {
         <Icon as={FaEthereum} mr={1} />
         <Text>{price}</Text>
       </Flex>
-    </Box>
+    </MotionBox>
   );
 };
 
