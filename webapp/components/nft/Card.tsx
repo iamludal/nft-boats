@@ -1,5 +1,13 @@
 import { Badge, Box, BoxProps, Flex, Heading } from '@chakra-ui/layout';
-import { Image } from '@chakra-ui/react';
+import {
+  Image,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalBody,
+  ModalHeader,
+} from '@chakra-ui/react';
 import { BsPatchCheckFill } from 'react-icons/bs';
 import { Icon } from '@chakra-ui/icon';
 import { useColorModeValue, Text } from '@chakra-ui/react';
@@ -7,6 +15,7 @@ import { FaEthereum, FaFireAlt } from 'react-icons/fa';
 import { FC } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { motion } from 'framer-motion';
+import { useDisclosure } from '@chakra-ui/react';
 
 export type Props = {
   name: string;
@@ -30,6 +39,7 @@ const MotionBox = motion<BoxProps>(Box);
 
 const Card: FC<Props> = ({ name, image, price, popular }) => {
   const { t } = useTranslation('index');
+  const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
     <MotionBox
@@ -41,6 +51,7 @@ const Card: FC<Props> = ({ name, image, price, popular }) => {
       _hover={{ boxShadow: 'outline' }}
       whileHover={{ scale: 1.02 }}
       variants={child}
+      onClick={onOpen}
     >
       <Badge
         mb={4}
@@ -64,6 +75,24 @@ const Card: FC<Props> = ({ name, image, price, popular }) => {
         <Icon as={FaEthereum} mr={1} />
         <Text>{price}</Text>
       </Flex>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalHeader>
+            <Flex alignItems="center" mt={5}>
+              <Heading as="h2" size="lg" fontWeight={700}>
+                {name}
+              </Heading>
+              <Icon as={BsPatchCheckFill} color="blue.500" ml={2} />
+            </Flex>
+          </ModalHeader>
+          <ModalBody px={10} pb={10} pt={5}>
+            <Image src={image} width={400} height={400} rounded="md" />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </MotionBox>
   );
 };
