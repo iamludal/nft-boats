@@ -1,4 +1,4 @@
-# DevOups 🤭
+# NFT Boats ⛵
 
 ## Liens Utiles
 
